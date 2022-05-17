@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "googleapis": "^100.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^10.0.0",
+    "mongoose": "^6.3.3",
+    "nodemon": "^2.0.16"
+  },
+  "name": "stanrute-cms",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
