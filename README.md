@@ -7,6 +7,7 @@ mongoose
 jsonwebtoken
 bcrypt
 dotenv
+cors
 nodemon(optional)
 
 //HOW TO CONNECT TO THE DATABASE
