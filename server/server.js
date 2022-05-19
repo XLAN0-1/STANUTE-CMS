@@ -3,11 +3,14 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const app = express();
 
 //Set up app to use json and urlencodedform
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+app.use(cors());
 
 //Connect to the mongoose databas
 mongoose.connect(`mongodb+srv://admin-lana:${process.env.DB_PASSWORD}@cluster0.4ltqi.mongodb.net/cms?retryWrites=true&w=majority`);
