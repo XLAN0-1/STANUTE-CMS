@@ -1,36 +1,38 @@
-const CLIENT_ID = '768566393910-0cigk4hccfla22hfmbni44n2b8clhaeo.apps.googleusercontent.com';
-const SECRET = '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';
+const {google} = require('googleapis');
 
-const FORM_ID = '1Whtr0jFAa3XWkWvbuvtDQ_ra3cd8ki2E0__CEmXqxuI';
-'use strict';
 
-const path = require('path');
-const google = require('@googleapis/forms');
-const {
-  authenticate,
-} = require('@google-cloud/local-auth');
+//Authenticate with google
 
-const formID = FORM_ID;
 
-async function runSample(query) {
-  const auth = await authenticate({
-    keyfilePath: path.join(__dirname, 'credentials.json'),
-    scopes: 'https://www.googleapis.com/auth/forms.responses.readonly',
+const auth = new google.auth.GoogleAuth({
+  keyFile: 'credentials.json',
+  scopes: "https://www.googleapis.com/auth/spreadsheets"
+})
+
+fetchForm = async ()=>{
+ 
+ // Create client instance for auth
+  const client = await auth.getClient();
+
+  // Instance of Google Sheets API
+  const googleSheets = google.sheets({ version: "v4", auth: client });
+
+  const spreadsheetId = "1CsmGjFJAkHqTmG9O54LOmJYNykFcoITAj7Sv9xQGak4";
+
+  // Get metadata about spreadsheet
+  const metaData = await googleSheets.spreadsheets.get({
+    auth,
+    spreadsheetId,
   });
-  const forms = google.forms({
-    version: 'v1',
-    auth: auth,
+
+  // Read rows from spreadsheet
+  const getRows = await googleSheets.spreadsheets.values.get({
+    auth,
+    spreadsheetId,
+    range: "Form Responses 3",
   });
-  const res = await forms.forms.responses.list({
-    formId: formID,
-  });
-  console.log(res.data);
-  return res.data;
+
+  console.log(getRows.data);
 }
 
-if (module === require.main) {
-  runSample().catch(console.error);
-}
-
-
-module.exports = runSample;
+fetchForm();

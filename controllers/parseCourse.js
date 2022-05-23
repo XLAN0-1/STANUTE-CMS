@@ -5,8 +5,7 @@ parseCourseIntoSections = (course) => {
     let contentStartingCursor = 0;
     let contentEndingCursor = 0;
     let tempH1 = 0;
-    let title = "";
-    let titleContent = "";
+
 
     const sections = [];
     
