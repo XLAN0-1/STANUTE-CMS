@@ -126,4 +126,5 @@ module.exports = {
   getCourses,
   getDrafts,
   addCourse,
+  editCourse
 };

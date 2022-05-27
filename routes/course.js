@@ -10,6 +10,7 @@ router.get('/courses', course.getCourses);
 router.get('/drafts', auth.verifyUser, course.getDrafts);
 
 
+router.post('/edit', auth.verifyUser, course.editCourse);
 router.post('/add-course', auth.verifyUser, course.addCourse);
 router.post('/delete-course', auth.verifyUser, course.deleteCourse);
 
