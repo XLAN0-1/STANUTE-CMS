@@ -16,6 +16,7 @@ const courseSchema = mongoose.Schema({
   objectives: String,
   highlights: String,
   created_on: Date,
+  category: String,
 });
 
 const notificationSchema = mongoose.Schema({

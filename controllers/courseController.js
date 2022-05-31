@@ -69,7 +69,9 @@ editCourse = (req, res) => {
 
 //Add a new course to the database
 addCourse = (req, res) => {
-  let { img, content, highlights, objectives, title, published } = req.body;
+  let { img, content, highlights, objectives, title, published, category } = req.body;
+
+  category = category == null ? 'Newbie': category;
 
   //Parse the course into sections
   const sections = parseCourse(content);
@@ -84,6 +86,7 @@ addCourse = (req, res) => {
     published: published,
     sections: sections,
     created_on: new Date(),
+    category: category
   });
 
   //Save the course to the database
@@ -107,7 +110,7 @@ deleteCourse = (req, res) => {
   let { id } = req.body;
 
   //Delete the course
-  Course.deleteOne({ id: id })
+  Course.deleteOne({ _id: id })
     .then((result) => {
       res.status(200).json({
         status: true,
